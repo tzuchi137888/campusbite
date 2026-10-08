@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CampusBite · Lunch, back on time</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><a class="brand" href="/">◒ <span>CampusBite</span></a><span class="tag">LOCAL COMPUTE / DEMO</span></header>
+<main>
+  <section class="hero"><div><p class="eyebrow">YOUR LUNCH BREAK, PLANNED.</p><h1>Good lunch.<br><em>Back on time.</em></h1><p class="intro">Find a table, estimate the wait, and leave enough time for your next class.</p></div><div class="hero-note"><span>01 / PROTOTYPE</span><p>A small decision.<br>A less crowded campus.</p><small>Synthetic restaurants & dining sessions.<br>Local CPU inference. No camera connected.</small></div></section>
+  <section class="planner"><form id="plan">
+    <label>Departure time<input id="now" type="time" value="12:00" required></label>
+    <label>Next class<input id="class" type="time" value="13:00" required></label>
+    <label>Your group<select id="party"><option value="1">1 person</option><option value="2" selected>2 people</option><option value="3">3 people</option><option value="4">4 people</option><option value="5">5 people</option><option value="6">6 people</option></select></label>
+    <label>To restaurant<select id="out"><option value="walk">Walk</option><option value="bike">Bicycle</option></select></label>
+    <label>Back to class<select id="back"><option value="walk">Walk</option><option value="bike">Bicycle</option></select></label>
+    <label>Buffer (min)<input id="buffer" type="number" min="0" max="30" value="5" required></label>
+    <button type="submit">Find my lunch →</button>
+  </form></section>
+  <div id="error" role="alert" hidden></div>
+  <section class="results-heading"><div><p class="eyebrow">NEAR CAMPUS</p><h2>Your lunch options</h2></div><span id="summary" aria-live="polite"></span></section>
+  <div id="cards" aria-live="polite"></div>
+  <section class="method"><h2>How to read the estimate</h2><p>Typical uses median dining durations. Cautious uses 80th-percentile durations for each group; it is a planning scenario, <strong>not an 80% on-time probability</strong>. Status includes your chosen buffer. Both scenarios include seating, ordering, food preparation, eating and payment in the dining duration.</p><p>Routes are preset demo distances. The queue follows strict first-in, first-out seating with one group per table. New arrivals before you reach the restaurant are not forecast. Snapshot time is your selected departure time; this is not a live feed.</p></section>
+  <section class="operator"><div class="results-heading"><div><p class="eyebrow">TRY A DIFFERENT SCENARIO</p><h2>Restaurant controls</h2></div><button id="reset" class="secondary">Reset demo</button></div><p>Simulate a table becoming free or a longer queue. Changes last until the server restarts.</p>
+  <form id="table-form" class="control-form"><label>Restaurant<select id="restaurant"></select></label><label>Table<select id="table"></select></label><label>Seated people (0 = free)<input id="seated" type="number" min="0" max="6" value="0" required></label><label>Minutes since seating<input id="elapsed" type="number" min="0" max="180" value="0" required></label><button>Update table</button></form>
+  <form id="queue-form" class="control-form"><label class="wide">Waiting groups at selected restaurant<input id="queue" placeholder="e.g. 2, 1, 4 — empty means no queue" aria-describedby="queue-help"></label><button>Update queue</button></form><small id="queue-help">Each number is one group's size (1–6 people). Up to 30 groups.</small><p id="operator-status" role="status"></p></section>
+</main><footer>CampusBite / Edge-assisted campus dining prototype · All bundled data is synthetic · UGen300 integration planned</footer><script src="/app.js"></script>
+</body></html>
